@@ -64,6 +64,7 @@ class Configuration:
         except Exception as e:
             raise PremiumException(e,sys) from e
 
+
     def get_data_validation_pipeline_config(self) -> DataValidationConfig:
         try:
             artifact_dir = self.training_pipeline_config.artifact_dir
@@ -92,6 +93,7 @@ class Configuration:
 
         except Exception as e:
             raise PremiumException(e,sys) from e
+
 
     def get_data_transformation_pipeline_config(self) -> DataTransformationConfig:
         try:
@@ -223,3 +225,4 @@ class Configuration:
 
         except Exception as e:
             raise PremiumException(e,sys) from e
+
