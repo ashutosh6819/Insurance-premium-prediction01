@@ -58,7 +58,6 @@ class DataIngestion:
     def split_data_as_train_test(self) -> DataIngestionArtifact:
         try:
             raw_data_dir = self.data_ingestion_config.raw_data_dir
-            #file_name = "insurance"
             file_name = os.listdir(raw_data_dir)[0]
 
             premium_file_path = os.path.join(raw_data_dir, file_name)

@@ -3,7 +3,7 @@
 {% block head %}
 
 
-<title>premium Estimator</title>
+<title>Premium Predictor</title>
 {% endblock %}
 
 {% block content %}
@@ -13,16 +13,17 @@
 
 
         <form action="/predict" method="post">
-            <legend>premium Estimation Form</legend>
+            <legend>Premium Estimation Form</legend>
             <div class="mb-3">
                 <label class="form-label">Age</label>
-                <input class="form-control" type="text" name="age" placeholder="Enter a Age"
+                <input class="form-control" type="text" name="age" placeholder="Enter your age"
                     required />
+
             </div>
             <div class="mb-3">
                 <label class="form-label">Sex M/F</label>
-                <input class="form-control" name="Sex" placeholder="Enter Your Sex"
-                    required />
+                <select class="form-control" name="sex"
+                    required>
 
                     <option value="male">
                         Male
@@ -37,12 +38,20 @@
             <div class="mb-3">
                 <label class="form-label">BMI</label>
                 <input class="form-control" type="text" name="bmi"
-                    placeholder="Enter BMI (Body Mass index)" />
+                    placeholder="Enter BMI(Body Mass Index)" />
 
             </div>
             <div class="mb-3">
+                <label class="form-label">Children</label>
+                <input class="form-control" type="text" name="children" 
+                placeholder="How many children do you have ?"
+                    required />
+
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label">Smoker</label>
-                <select class="form-control" name="Smoker" placeholder="Do you smoke?"
+                <select class="form-control" name="smoker"
                     required>
 
                     <option value="yes">
@@ -53,11 +62,12 @@
                     </option>
                 </select>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Region</label>
                 <select class="form-control" name="region" placeholder="Enter your region"
                     required>
-                
+                    
                     <option value="southeast">
                         Southeast
                     </option>
@@ -75,11 +85,11 @@
 
             <div class="mb-3">
 
-                <input class="btn btn-primary" type="submit" value="Predict Premium Amount" required />
+                <input class="btn btn-primary" type="submit" value="Premium Value" required />
             </div>
 
         </form>
-    </div>           
+    </div>
 
     <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
         <div class="card">
@@ -89,7 +99,7 @@
             <div class="card-body">
         {% if context['premium_data'] is not none %}
         <table class="table table-striped">
-            <caption>Premium Prediction</caption>
+            <caption>Premium Prediction </caption>
             <tr>
                 <th>Input Feature</th>
                 <th>Feature Value</th>
