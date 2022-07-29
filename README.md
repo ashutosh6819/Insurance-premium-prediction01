@@ -1,7 +1,7 @@
 # Insurance-premium-prediction01
 
 Application url:
-[HousingPredictor](https://ml-regression-app.herokuapp.com/)
+[HousingPredictor](https://insurance-premium01.herokuapp.com//)
 
 ## Start Machine Learning project.
 
@@ -69,7 +69,7 @@ git remote -v
 To setup CI/CD pipeline in heroku we need 3 information
 1. HEROKU_EMAIL = jhudele1999@gmail.com
 2. HEROKU_API_KEY = <>
-3. HEROKU_APP_NAME = 
+3. HEROKU_APP_NAME = insurance-premium01
 
 BUILD DOCKER IMAGE
 ```
@@ -110,11 +110,3 @@ Install ipykernel
 ```
 pip install ipykernel
 ```
-
-
-Data Drift:
-When your datset stats gets change we call it as data drift
-
-
-
-## Write a function to get training file path from artifact dir

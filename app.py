@@ -1,16 +1,16 @@
 from flask import Flask, request
-from premium.util.util import read_yaml_file, write_yaml_file
-from matplotlib.style import context
-from premium.logger import logging
-from premium.exception import PremiumException
-import os, sys
-import json
 from premium.config.configuration import Configuration
 from premium.constant import CONFIG_DIR, get_current_time_stamp
 from premium.pipeline.pipeline import Pipeline
 from premium.entity.premium_predictor import PremiumPredictor, PremiumData
 from premium.logger import get_log_dataframe
 from flask import send_file, abort, render_template
+from premium.util.util import read_yaml_file, write_yaml_file
+from matplotlib.style import context
+from premium.logger import logging
+from premium.exception import PremiumException
+import os
+import json
 
 
 ROOT_DIR = os.getcwd()
@@ -24,7 +24,7 @@ MODEL_DIR = os.path.join(ROOT_DIR, SAVED_MODELS_DIR_NAME)
 
 
 PREMIUM_DATA_KEY = "premium_data"
-EXPENSES = "expenses"
+EXPENSES_KEY = "expenses"
 
 app = Flask(__name__)
 
@@ -100,7 +100,7 @@ def train():
 def predict():
     context = {
         PREMIUM_DATA_KEY: None,
-        EXPENSES: None
+        EXPENSES_KEY: None
     }
 
     if request.method == 'POST':
@@ -125,7 +125,7 @@ def predict():
         expenses = premium_predictor.predict(X=premium_df)
         context = {
             PREMIUM_DATA_KEY: premium_data.get_premium_data_as_dict(),
-            EXPENSES: expenses,
+            EXPENSES_KEY: expenses,
         }
         return render_template('predict.html', context=context)
     return render_template("predict.html", context=context)

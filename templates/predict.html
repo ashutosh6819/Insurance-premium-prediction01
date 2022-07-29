@@ -3,7 +3,7 @@
 {% block head %}
 
 
-<title>Housing Estimator</title>
+<title>premium Estimator</title>
 {% endblock %}
 
 {% block content %}
@@ -13,96 +13,89 @@
 
 
         <form action="/predict" method="post">
-            <legend>Housing Estimation Form</legend>
+            <legend>premium Estimation Form</legend>
             <div class="mb-3">
-                <label class="form-label">Longitude</label>
-                <input class="form-control" type="text" name="longitude" placeholder="Enter a value of longitude"
+                <label class="form-label">Age</label>
+                <input class="form-control" type="text" name="age" placeholder="Enter a Age"
                     required />
             </div>
             <div class="mb-3">
-                <label class="form-label">Latitude</label>
-                <input class="form-control" type="text" name="latitude" placeholder="Enter a value of latitude"
+                <label class="form-label">Sex M/F</label>
+                <input class="form-control" name="Sex" placeholder="Enter Your Sex"
                     required />
+
+                    <option value="male">
+                        Male
+                    </option>
+                    <option value="female">
+                        Female
+                    </option>
+                </select>
+            </div>
 
             </div>
             <div class="mb-3">
-                <label class="form-label">House Median Age</label>
-                <input class="form-control" type="text" name="housing_median_age"
-                    placeholder="Enter a value of housing_median_age" />
+                <label class="form-label">BMI</label>
+                <input class="form-control" type="text" name="bmi"
+                    placeholder="Enter BMI (Body Mass index)" />
 
             </div>
             <div class="mb-3">
-                <label class="form-label">Total Rooms</label>
-                <input class="form-control" type="text" name="total_rooms" placeholder="Enter a value of total_rooms"
-                    required />
-
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Total Bedrooms</label>
-                <input class="form-control" type="text" name="total_bedrooms"
-                    placeholder="Enter a value of total_bedrooms" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Population</label>
-                <input class="form-control" type="text" name="population" placeholder="Enter a value of population"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Households</label>
-                <input class="form-control" type="text" name="households" placeholder="Enter a value of households"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Median Income</label>
-                <input class="form-control" type="text" name="median_income"
-                    placeholder="Enter a value of median_income" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Ocean Proximity</label>
-                <select class="form-control" name="ocean_proximity" placeholder="Enter a value of ocean_proximity"
+                <label class="form-label">Smoker</label>
+                <select class="form-control" name="Smoker" placeholder="Do you smoke?"
                     required>
 
-                    <option value="<1H OCEAN">
-                        &lt;1H OCEAN
+                    <option value="yes">
+                        Yes
                     </option>
-                    <option value="INLAND">
-                        INLAND
+                    <option value="no">
+                        No
                     </option>
-                    <option value="NEAR BAY">
-                        NEAR BAY
-                    </option>
-                    <option value="NEAR OCEAN">
-                        NEAR OCEAN
-                    </option>
-                    <option value="ISLAND">
-                        ISLAND
-                    </option>
-
                 </select>
             </div>
             <div class="mb-3">
+                <label class="form-label">Region</label>
+                <select class="form-control" name="region" placeholder="Enter your region"
+                    required>
+                
+                    <option value="southeast">
+                        Southeast
+                    </option>
+                    <option value="southwest">
+                        Southwest
+                    </option>
+                    <option value="northeast">
+                        Northeast
+                    </option>
+                    <option value="northwest">
+                        Northwest
+                    </option>
+                </select>
+            </div>
 
-                <input class="btn btn-primary" type="submit" value="Predict Median House Value" required />
+            <div class="mb-3">
+
+                <input class="btn btn-primary" type="submit" value="Predict Premium Amount" required />
             </div>
 
         </form>
-    </div>
+    </div>           
 
     <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
         <div class="card">
             <div class="card-header">
-              California housing price
+              Insurance Premium
             </div>
             <div class="card-body">
-        {% if context['housing_data'] is not none %}
+        {% if context['premium_data'] is not none %}
         <table class="table table-striped">
-            <caption>Califoria Housing Prediction </caption>
+            <caption>Premium Prediction</caption>
             <tr>
                 <th>Input Feature</th>
                 <th>Feature Value</th>
 
             </tr>
-            {% for column,value in context['housing_data'].items() %}
+            {% for column,value in context['premium_data'].items() %}
 
 
 
@@ -114,9 +107,9 @@
             {% endfor %}
             <tr>
 
-                <td>median_house_value </td>
+                <td>expenses</td>
                 <td>
-                    {{ context['median_house_value'] }}
+                    {{ context['expenses'] }}
                 </td>
             </tr>
         </table>
@@ -124,7 +117,7 @@
         {% else %}
        
               <h5 class="card-title">Submit Form</h5>
-              <p class="card-text">Kindly provide necessary information to estimate housing price in california</p>
+              <p class="card-text">Kindly provide necessary information to estimate premium</p>
             
          
 
