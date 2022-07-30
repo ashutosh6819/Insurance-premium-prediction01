@@ -24,7 +24,7 @@ MODEL_DIR = os.path.join(ROOT_DIR, SAVED_MODELS_DIR_NAME)
 
 
 PREMIUM_DATA_KEY = "premium_data"
-EXPENSES = "expenses"
+EXPENSES_KEY = "expenses"
 
 app = Flask(__name__)
 
@@ -100,7 +100,7 @@ def train():
 def predict():
     context = {
         PREMIUM_DATA_KEY: None,
-        EXPENSES: None
+        EXPENSES_KEY: None
     }
 
     if request.method == 'POST':
@@ -125,7 +125,7 @@ def predict():
         expenses = premium_predictor.predict(X=premium_df)
         context = {
             PREMIUM_DATA_KEY: premium_data.get_premium_data_as_dict(),
-            EXPENSES: expenses,
+            EXPENSES_KEY: expenses,
         }
         return render_template('predict.html', context=context)
     return render_template("predict.html", context=context)
