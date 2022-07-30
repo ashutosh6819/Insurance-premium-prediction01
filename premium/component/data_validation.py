@@ -64,11 +64,28 @@ class DataValidation:
         try:
             validation_status = False
             
-            
-            validation_status = True
-            logging.info("validate dataset schema is good to go!!")
-            #else :
-                #logging.info("Validate dataset schema failed")
+            schema_file_path = self.data_validation_config.schema_file_path
+            schema_data = read_yaml_file(file_path=schema_file_path)
+            schema_columns = schema_data['columns']
+            schema_datatype_dataframe = pd.DataFrame.from_dict(schema_columns,orient='index')
+
+            train_file_path = self.data_ingestion_artifact.train_file_path
+            train_df = pd.read_csv(train_file_path)
+
+            test_file_path = self.data_ingestion_artifact.test_file_path
+            test_df = pd.read_csv(test_file_path)
+
+            train_datatype_dataframe = pd.DataFrame(train_df.dtypes)
+            test_datatype_dataframe = pd.DataFrame(test_df.dtypes)
+
+            if schema_datatype_dataframe.equals(train_datatype_dataframe) :
+                if schema_datatype_dataframe.equals(test_datatype_dataframe):
+                    validation_status = True
+                    logging.info("validate dataset schema is good to go!!")
+                else :
+                    logging.info("Validate dataset schema failed")
+            else :
+                logging.info("Validate dataset schema failed")
             
                 
             #validation_status = True
